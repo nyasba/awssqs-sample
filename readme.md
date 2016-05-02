@@ -1,6 +1,6 @@
-SetUp•û–@
+ï»¿SetUpæ–¹æ³•
 
-## AWS”FØİ’è‚ğ’Ç‰Á
+## AWSèªè¨¼è¨­å®šã‚’è¿½åŠ 
 
 ~/.aws/credentials on Linux, OS X or unix
 C:\Users\USERNAME\.aws\credentials on Windows
