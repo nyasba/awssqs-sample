@@ -1,8 +1,8 @@
-﻿SetUp方法
+﻿## SetUp方法
 
-## AWS認証設定を追加
+### AWS認証設定を追加
 
-~/.aws/credentials on Linux, OS X or unix
+~/.aws/credentials on Linux, OS X or unix  
 C:\Users\USERNAME\.aws\credentials on Windows
 
 ```
