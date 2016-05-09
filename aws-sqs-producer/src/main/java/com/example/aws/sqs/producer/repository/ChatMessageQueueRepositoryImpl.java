@@ -7,16 +7,17 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.sqs.AmazonSQS;
 import com.amazonaws.services.sqs.AmazonSQSClient;
 import com.amazonaws.services.sqs.model.SendMessageRequest;
-import com.example.aws.sqs.producer.domain.User;
+import com.amazonaws.services.sqs.model.SendMessageResult;
+import com.example.aws.sqs.producer.domain.ChatMessage;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UserRepositoryImpl implements UserRepository{
+public class ChatMessageQueueRepositoryImpl implements ChatMessageQueueRepository {
 
     private final String QUEUE_NAME = "test-queue";
 
     @Override
-    public void register(User user) {
+    public void put(ChatMessage chatMessage) {
 
         // <UserDirectory>/.aws/credentialsにある認証情報を読み取る
         AWSCredentials credentials = new ProfileCredentialsProvider().getCredentials();
@@ -29,8 +30,10 @@ public class UserRepositoryImpl implements UserRepository{
         String queueUrl = sqs.getQueueUrl(QUEUE_NAME).getQueueUrl();
 
         //  キューにリクエストを送信
-        SendMessageRequest request = new SendMessageRequest(queueUrl, user.getJsonString());
+        SendMessageRequest request = new SendMessageRequest(queueUrl, chatMessage.getJsonString());
         sqs.sendMessage(request);
+
+        System.out.println("[message]" + chatMessage.getJsonString());
     }
 
 }

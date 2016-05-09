@@ -1,8 +1,10 @@
 package com.example.aws.sqs.producer.controller;
 
-import com.example.aws.sqs.producer.domain.User;
-import com.example.aws.sqs.producer.repository.UserRepository;
+import com.example.aws.sqs.producer.controller.request.ChatMessageRequest;
+import com.example.aws.sqs.producer.domain.ChatMessage;
+import com.example.aws.sqs.producer.repository.ChatMessageQueueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AwsSqsProducerController {
 
     @Autowired
-    private UserRepository userRepository;
+    private ChatMessageQueueRepository chatMessageQueueRepository;
 
-    @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public void register() {
-        User user = new User("きゅーたろう", 15);
-        userRepository.register(user);
+    @RequestMapping(value = "/messages", method = RequestMethod.POST)
+    public void register(@RequestBody ChatMessageRequest request) {
+        ChatMessage chatMessage = request.getChatMessage();
+        chatMessageQueueRepository.put(chatMessage);
     }
 }
 
