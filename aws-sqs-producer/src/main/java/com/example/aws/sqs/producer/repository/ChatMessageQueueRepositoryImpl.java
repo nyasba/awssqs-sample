@@ -7,14 +7,11 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.sqs.AmazonSQS;
 import com.amazonaws.services.sqs.AmazonSQSClient;
 import com.amazonaws.services.sqs.model.SendMessageRequest;
-import com.amazonaws.services.sqs.model.SendMessageResult;
 import com.example.aws.sqs.producer.domain.ChatMessage;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class ChatMessageQueueRepositoryImpl implements ChatMessageQueueRepository {
-
-    private final String QUEUE_NAME = "test-queue";
 
     @Override
     public void put(ChatMessage chatMessage) {
@@ -27,7 +24,7 @@ public class ChatMessageQueueRepositoryImpl implements ChatMessageQueueRepositor
         sqs.setRegion(tokyo);
 
         // ターゲットキューのURLを取得
-        String queueUrl = sqs.getQueueUrl(QUEUE_NAME).getQueueUrl();
+        String queueUrl = sqs.getQueueUrl(System.getProperty("queuename")).getQueueUrl();
 
         //  キューにリクエストを送信
         SendMessageRequest request = new SendMessageRequest(queueUrl, chatMessage.getJsonString());
