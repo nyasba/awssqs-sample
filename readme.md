@@ -20,6 +20,14 @@ aws_secret_access_key = your_secret_access_key
 
 がんばれ。
 
+### Consumerをビルドして、ElasticBeanstalkで起動
+
+```
+cd .\aws-sqs-consumer
+.\gradlew clean build
+```
+
+
 ### Producerを起動
 
 キューへ登録する部分を起動
@@ -30,7 +38,7 @@ cd .\aws-sqs-producer
 java -Dqueuename=<QUEUE_NAME> -jar .\build\libs\aws-sqs-producer-1.0.jar
 ```
 
-curlなどでAPIを叩く。
+curlなどでAPIを叩くことでキューに登録される
 
 ```
 curl -X POST localhost:8080/messages -d @test/request.json -H "Content-type: application/json" -i
