@@ -25,7 +25,13 @@ aws_secret_access_key = your_secret_access_key
 ```
 cd .\aws-sqs-consumer
 .\gradlew clean build
+cp  .\build\libs\aws-sqs-consumer-1.0.jar ..\eb
 ```
+
+Dockerfileを編集。  
+Chatworkの<ROOM_ID>と<API_TOKEN>をちゃんとしたものに変えて保存
+
+これらをzipにまとめて、ElasticBeanstalkのワーカーとして起動すればOK。
 
 
 ### Producerを起動
