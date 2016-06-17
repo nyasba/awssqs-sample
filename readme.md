@@ -27,7 +27,7 @@ aws_secret_access_key = your_secret_access_key
 ```
 cd .\aws-sqs-producer
 .\gradlew clean build
-java -Dqueuename=<QUEUE_NAME> -jar .\build\lib\aws-sqs-producer-1.0.jar
+java -Dqueuename=<QUEUE_NAME> -jar .\build\libs\aws-sqs-producer-1.0.jar
 ```
 
 curlなどでAPIを叩く。
