@@ -12,7 +12,8 @@ public class ChatMessage {
     }
 
     public String getBody() {
-        String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("uuuu/MM/dd HH:mm:ss"));
-        return String.format("[P %s]%s\" } ", now, body);
+        return body;
+        // String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("uuuu/MM/dd HH:mm:ss"));
+        // return String.format("[P %s]%s", now, body);
     }
 }
